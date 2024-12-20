@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÔN THI ARRAY CYBER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Reset and Basic Styling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #4e73df, #1cc88a); 
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.4); /* Slight dark overlay */
+        }
+
+        .hero h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3rem;
+            color: #FFD700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FF6347;
+            }
+
+            to {
+                text-shadow: 0 0 30px #FFD700, 0 0 40px #FF6347;
+            }
+        }
+
+        /* Buttons Section */
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background: #FF6347;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            background: #FF4500;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(255, 69, 0, 0.4);
+        }
+
+        /* Iframe Sections */
+        .iframe-container {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            width: 80%;
+            max-width: 1000px;
+            height: 70%;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease;
+        }
+
+        .iframe-container.active {
+            display: block;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+        }
+
+        /* Modal for Welcome Message */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 1s;
+        }
+
+        .modal-content {
+            background: #FF6347;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 80%;
+            max-width: 500px;
+            color: white;
+        }
+
+        .modal .close {
+            color: #FFD700;
+            font-size: 28px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .modal .close:hover {
+            color: #FF4500;
+            transform: scale(1.2);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-weight: 600;
+            background-color: #111;
+            color: #FFD700;
+        }
+
+        /* Fade In Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .btn-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <script>
+        function showIframe(iframeId) {
+            var iframes = document.querySelectorAll('.iframe-container');
+            iframes.forEach(function (iframe) {
+                iframe.classList.remove('active');
+            });
+
+            var selectedIframe = document.getElementById(iframeId);
+            selectedIframe.classList.add('active');
+        }
+
+        function hideIframes() {
+            var iframes = document.querySelectorAll('.iframe-container');
+            iframes.forEach(function (iframe) {
+                iframe.classList.remove('active');
+            });
+        }
+
+        function showModal() {
+            document.getElementById('myModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        window.onload = function () {
+            showModal();
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- Hero Section with Welcome Message -->
+    <div class="hero">
+        <h1>🎄 ÔN THI ONLINE 🎅</h1>
+        <div class="btn-group">
+            <button class="btn" onclick="showIframe('iframe1')">Toán 1</button>
+            <button class="btn" onclick="showIframe('iframe2')">Toán 2</button>
+            <button class="btn" onclick="showIframe('iframe3')">Toán 3</button>
+            <button class="btn" onclick="showIframe('iframe4')">Toán 4</button>
+            <button class="btn" onclick="showIframe('iframe5')">Toán 5</button>
+            <button class="btn" onclick="showIframe('iframe6')">Toán 6</button>
+            <button class="btn" onclick="showIframe('iframe7')">Toán 7</button>
+            <button class="btn" onclick="showIframe('iframe8')">Toán 8</button>
+            <button class="btn" onclick="showIframe('iframe9')">Toán 9</button>
+            <button class="btn" onclick="showIframe('iframe10')">Toán 10</button>
+            <a href="https://www.facebook.com/share/14Zriw6KHC/?mibextid=wwXIfr" target="_blank" class="btn">Lấy File Bài Test</a>
+            <button class="btn btn-danger" onclick="hideIframes()">Tắt Cửa Sổ</button>
+        </div>
+    </div>
+
+    <!-- Iframes for Quiz Content -->
+    <div id="iframe1" class="iframe-container">
+        <iframe src="https://azota.vn/de-thi/lwhw6k" title="Toán 1"></iframe>
+    </div>
+    <div id="iframe2" class="iframe-container">
+        <iframe src="https://azota.vn/de-thi/rweadc" title="Toán 2"></iframe>
+    </div>
+    <div id="iframe3" class="iframe-container">
+        <iframe src="https://azota.vn/de-thi/zwkghi" title="Toán 3"></iframe>
+    </div>
+    <div id="iframe4" class="iframe-container">
+        <iframe src="https://azota.vn/de-thi/kz46ov" title="Toán 4"></iframe>
+    </div>
+    <div id="iframe5" class="iframe-container">
+        <iframe src="https://azota.vn/de-thi/deulka" title="Toán 5"></iframe>
+    </div>
+    <div id="iframe6" class="iframe-container">
+        <iframe src="https://azota.vn/de-thi/du5ivq" title="Toán 6"></iframe>
+    </div>
+    <div id="iframe7" class="iframe-container">
+        <iframe src="https://azota.vn/de-thi/8jdp7u" title="Toán 7"></iframe>
+    </div>
+    <div id="iframe8" class="iframe-container">
+        <iframe src="https://azota.vn/de-thi/gtpbip" title="Toán 8"></iframe>
+    </div>
+    <div id="iframe9" class="iframe-container">
+        <iframe src="https://azota.vn/de-thi/qbeeo4" title="Toán 9"></iframe>
+    </div>
+    <div id="iframe10" class="iframe-container">
+        <iframe src="https://azota.vn/de-thi/ux6c8r" title="Toán 10"></iframe>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>🎁 Chào Mừng Bạn!</h2>
+            <p>Hãy tận hưởng với những bài học bổ ích nhé! ❄️</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 Array Cyber. Chúc bạn học tập thật tốt! 🎄</p>
+    </div>
+
+</body>
+
+</html>
